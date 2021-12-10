@@ -23,7 +23,10 @@ class PostController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/new', name: 'admin_post_new', methods: ['GET','POST'])]
+
     public function new(Request $request): Response
     {
         $post = new Post();
@@ -32,6 +35,10 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            //asignamos fecha ya que en postType sacamos el createdAt
+            $post->setCreatedAt(new \DateTime());
+            
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -44,7 +51,10 @@ class PostController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{id}', name: 'admin_post_show', methods: ['GET'])]
+
     public function show(Post $post): Response
     {
         return $this->render('admin/post/show.html.twig', [
@@ -52,7 +62,10 @@ class PostController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{id}/edit', name: 'admin_post_edit', methods: ['GET','POST'])]
+
     public function edit(Request $request, Post $post): Response
     {
         $form = $this->createForm(PostType::class, $post);
@@ -70,7 +83,10 @@ class PostController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{id}', name: 'admin_post_delete', methods: ['POST'])]
+
     public function delete(Request $request, Post $post): Response
     {
         if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {

@@ -10,11 +10,14 @@
 
               <div class="col-sm-3 col-lg-3">
                 <p class="aside-contacts-title"> Categorias </p>
-                    <ul>
-                        {% for cat in category %}
-                          <li>{{cat.nombre}}</li>
-                        {% endfor %}  
-                    </ul>
+                    
+                        <ul> 
+                            {% for cat in category %}
+                                <li> <a href="{{url('blog')}}?cat={{cat.id}}"> {{cat.nombre}} </a></li>
+                            {% endfor %}
+                            <li> <a href="{{url('blog')}}"> TODAS </a></li>
+                        </ul>    
+                    
               </div>
               <div class="col-sm-9 col-lg-9">
                   <div class="row row-md row-30">
@@ -24,18 +27,22 @@
                           <!-- Services Terri-->
                           
                               <article class="services-terri wow slideInUp ">
-                                  <div class="card container " style="width: 18rem;">
-                                      <img src="{{ asset ('images/sur.jpg')}}" class="card-img-top" alt="...">
+                                  <div class="card container ">
+                                      {% if post.imageName is not empty  %}
+                                          <img src="{{ vich_uploader_asset(post) | imagine_filter('blog_list') }} " class="card-img-top" alt="#">
+                                      {% else %}
+                                          <img src="{{ asset ('images/sur.jpg')}}" class="card-img-top" alt="...">
+                                      {% endif %}
                                           <div class="card-body ">
                                               <h5 class="card-title">{{post.titulo}}</h5>
                                               <p class="card-text">{{post.contenido}}</p>
-                                              <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+                                              <a href="{{ url('blog-detail', {'id': post.id} ) }}" class="btn btn-primary stretched-link">Ver producto</a>
                                           </div>
                                   </div>
                           
                               </article>
                        </div>
-                  </div>
+                    </div>
                   {% endfor %}            
               </div>
             </div>

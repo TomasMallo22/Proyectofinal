@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Admin index{% endblock %}
+
+{% block body %}
+    <h1>Admin index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Roles</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for admin in admins %}
+            <tr>
+                <td>{{ admin.id }}</td>
+                <td>{{ admin.username }}</td>
+                
+                <td>
+                    {% for role in admin.roles %}
+                        {{role}} <br/>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('admin_admin_user_show', {'id': admin.id}) }}">Ver</a>
+                    <a href="{{ path('admin_admin_user_edit', {'id': admin.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_admin_user_new') }}">Crear nuevo</a>
+{% endblock %}

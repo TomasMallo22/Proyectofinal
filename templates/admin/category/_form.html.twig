@@ -1,4 +1,16 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+                <div class="card-body">
+                        <div class="form-group">
+                            {{ form_label(form.nombre, 'Titulo') }}
+                            {{ form_widget(form.nombre, {'attr': {'class':'form-control', 'placeholder': 'Ingrese el titulo'}})}}
+                        </div>
+                       
+                        
+                       
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                </div>
+        {{form_rest(form)}}
 {{ form_end(form) }}

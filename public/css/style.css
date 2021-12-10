@@ -15191,3 +15191,12 @@ disabled look for disabled choices in the results dropdown
 		padding-right: 70px;
 	}
 }
+
+.margin_top_30 {
+	margin-top: 30px !important;
+	margin-bottom: 30px !important;
+}
+
+.margin_top_20 {
+	margin-top: 20px !important;
+}

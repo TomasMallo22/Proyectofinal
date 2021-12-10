@@ -1,11 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}New Post{% endblock %}
 
 {% block body %}
-    <h1>Create new Post</h1>
+    <div class="container-fluid">
+        <div class="row">      
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Nuevo Post</h3>
+              </div>
+              <!-- /.card-header -->
+                {{ include('admin/post/_form.html.twig') }}
+              <!-- form start -->
+                
+            </div>
+            <!-- /.card -->
 
-    {{ include('admin/post/_form.html.twig') }}
+                <a href="{{ path('admin_post_index') }}">back to list</a>
+            <!-- /.card -->
 
-    <a href="{{ path('admin_post_index') }}">back to list</a>
+          </div>
+          <!--/.col (left) -->
+        </div>
 {% endblock %}

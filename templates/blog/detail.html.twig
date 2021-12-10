@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container"> 
+        <div class="row row-md row-30">
+            <div class="col-md-3 col-lg-3 margin_top_30">
+                <p class="aside-contacts-title"> Categorias </p>        
+                    <ul> 
+                        {% for cat in category %}
+                            <li> <a href="{{url('blog')}}?cat={{cat.id}}"> {{cat.nombre}} </a></li>
+                        {% endfor %}
+                            <li> <a href="{{url('blog')}}"> TODAS </a></li>
+                    </ul>      
+            </div>
+            <div class="col-sm-6 col-lg-4 margin_top_30">
+                {% if post.imageName is not empty  %}
+                    <img  src="{{ vich_uploader_asset(post) | imagine_filter('blog_detail') }} "  alt="#">
+                {% else %}
+                    <img src="{{ asset ('images/sur.jpg')}}" alt="...">
+                {% endif %}        
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="margin_top_30">
+                    <h5 class="card-title">{{post.titulo}}</h5>
+                </div>
+                <div class="margin_top_20">
+                    <p class="card-text">{{post.contenido}}</p>
+                </div>
+            </div>         
+        </div>
+    </div>
+{% endblock %}
+
+ 
+       
+
+                   

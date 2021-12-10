@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Post{% endblock %}
 
@@ -20,8 +20,12 @@
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
+                <th>Categoria</th>
+                <td>{{ post.category.nombre }}</td>
+            </tr>
+            <tr>
                 <th>Contenido</th>
-                <td>{{ post.contenido }}</td>
+                <td>{{ post.contenido | nl2br }}</td>
             </tr>
         </tbody>
     </table>

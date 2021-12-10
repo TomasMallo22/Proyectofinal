@@ -47,4 +47,39 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+    * @return Post[] Returns an array of Post objects
+   */
+    
+  public function findByFilter($category)
+  {
+      $qBuilder = $this->createQueryBuilder('p');
+
+      if(!empty($category)){
+          $qBuilder->andWhere('p.category = :categoria')
+                   ->setParameter('categoria', $category);
+      }
+    
+      return $qBuilder->orderBy('p.id', 'DESC')
+          ->setMaxResults(10)
+          ->getQuery()
+          ->getResult()
+      ;
+  }
+
+  public function findHomeRandom()
+  {
+      $resultados = $this->createQueryBuilder('p')
+          ->orderBy('p.id', 'DESC')
+          ->setMaxResults(10)
+          ->getQuery()
+          ->getResult()
+      ;
+      
+     shuffle($resultados);
+
+     return $resultados;
+  }
+  
 }
